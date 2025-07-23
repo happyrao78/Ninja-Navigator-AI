@@ -1,0 +1,1 @@
+Ninjas Naviagtor AI - Your Personal Trip Planner AI Agent
