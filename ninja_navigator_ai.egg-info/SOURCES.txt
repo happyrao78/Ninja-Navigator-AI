@@ -11,13 +11,14 @@ logger/logger.py
 ninja_navigator_ai.egg-info/PKG-INFO
 ninja_navigator_ai.egg-info/SOURCES.txt
 ninja_navigator_ai.egg-info/dependency_links.txt
+ninja_navigator_ai.egg-info/requires.txt
 ninja_navigator_ai.egg-info/top_level.txt
 prompt_library/__init__.py
 prompt_library/prompt.py
 tools/__init__.py
 tools/arithematic_op_tool.py
-tools/calculator_tool.py
 tools/currency_conversion_tool.py
+tools/expense_calculator_tool.py
 tools/place_search_tool.py
 tools/weather_info_tool.py
 utils/__init__.py

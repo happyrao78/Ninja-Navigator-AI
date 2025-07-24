@@ -3,9 +3,12 @@ Name: ninja-navigator-ai
 Version: 0.1.0
 Summary: Add your description here
 Author: happy yadav
-Author-email: happyrao@gmail.com
+Author-email: happyrao7091@gmail.com
 Requires-Python: >=3.9
 Description-Content-Type: text/markdown
+Requires-Dist: langgraph>=0.5.4
+Requires-Dist: pandas>=2.3.1
+Requires-Dist: setuptools>=80.9.0
 Dynamic: author
 Dynamic: author-email
 
