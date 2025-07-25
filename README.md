@@ -1,10 +1,10 @@
 # 🤖 **Ninja Navigator AI** – Multi-Agent Travel Planning System
 
-## 🧩 **Problem Statement**
+## **Problem Statement**
 
 **Travel planning** is complex, time-consuming, and often inefficient when handled manually or via single-agent systems. Users must juggle information from different domains—destinations, weather, budget, scheduling—leading to fragmented or generic plans.
 
-### ❓ Why AI Multi-Agent Systems?
+### **Why AI Multi-Agent Systems?**
 
 AI **multi-agent systems** allow for **domain-specific expertise**, parallel processing, and fault tolerance—making them ideal for dynamic, high-context tasks like travel planning. Each agent contributes focused intelligence, and together they produce **faster**, **more personalized**, and **more reliable** travel solutions.
 
@@ -24,6 +24,7 @@ AI **multi-agent systems** allow for **domain-specific expertise**, parallel pro
 | **Budget Agent**      | Estimates costs, performs currency conversion, suggests budget optimizations |
 | **Itinerary Agent**   | Generates optimized, weather-aware, budget-constrained daily plans           |
 
+
 ### 🧠 How They Work Together
 
 1. **User Input** → Natural language travel query
@@ -32,9 +33,15 @@ AI **multi-agent systems** allow for **domain-specific expertise**, parallel pro
 4. **Results are aggregated** and passed through a synthesis pipeline
 5. **Final travel plan is generated** in structured markdown format, with export options
 
-### Live Snapshots
+### 🔧 Live System Demonstration
+
+## 🎨 User Interface Overview
 ![alt text](<Screenshot 2025-07-25 223547.png>)
+
+## 🤖 Multi-Agent Execution in Action
 ![alt text](<Screenshot 2025-07-25 223642.png>)
+
+## 📄 Generated Travel Plans
 ![alt text](image.png)
 ![alt text](image-1.png)
 ![alt text](image-2.png)
@@ -80,6 +87,17 @@ AI **multi-agent systems** allow for **domain-specific expertise**, parallel pro
 | **GPT-3.5 Turbo (OpenAI)** | Free/Paid | Better reasoning and coherence for final plan synthesis     |
 
 These models offer a **balance between speed and intelligence**, ideal for multi-agent collaboration with structured and natural output needs.
+
+## 📊 System Design
+
+### 🔄 Multi-Agent Workflow
+![alt text](MultiAgent-Workflow.png)
+
+### 🤖 System Architecture
+![alt text](System-Architecture.png)
+
+### 🏗️ Data Flow Sequence
+![alt text](Data-Flow-Sequence.png)
 
 ---
 
