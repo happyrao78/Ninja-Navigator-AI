@@ -36,10 +36,10 @@ AI **multi-agent systems** allow for **domain-specific expertise**, parallel pro
 ### 🔧 Live System Demonstration
 
 ## 🎨 User Interface Overviewassets/
-![alt text](assets/Screenshot 2025-07-25 223547.png)
+![alt text](<assets/Screenshot 2025-07-25 223547.png>)
 
 ## 🤖 Multi-Agent Execution in Action
-![alt text](assets/Screenshot 2025-07-25 223642.png)
+![alt text](<assets/Screenshot 2025-07-25 223642.png>)
 
 ## 📄 Generated Travel Plans
 ![alt text](assets/image.png)
