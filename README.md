@@ -106,36 +106,36 @@ This will transform the system into a **fully autonomous travel companion**—fr
 ### 📦 Setup Instructions
 
 ```bash
-# 1️⃣ Clone the project
+# 1️ Clone the project
 git clone https://github.com/happyrao78/ninja-navigator-ai
 cd ninja-navigator-ai
 
-# 2️⃣ Create a virtual environment
+# 2️ Create a virtual environment
 uv venv --python "your python version"
 
-# 3️⃣ Activate environment
+# 3️ Activate environment
 # Windows:
 .venv\Scripts\activate
 # Mac/Linux:
 source .venv/bin/activate
 
-# 4️⃣ Install dependencies
+# 4️ Install dependencies
 uv pip install -r requirements.txt
 
-# 5️⃣ Configure environment
+# 5️ Configure environment
 cp .env.name .env  # Rename sample file
 # Fill in your API keys
 
-# 6️⃣ Start backend server
+# 6️ Start backend server
 uvicorn main:app --reload --port 8000
 
-# 7️⃣ Launch frontend UI
+# 7️ Launch frontend UI
 streamlit run streamlit_app.py
 ```
 
 ---
 
-##  ** Architected By**
+##  Architected By
 
 **Happy Yadav**
 🔗 [LinkedIn](https://www.linkedin.com/in/happy-yadav-16b2a4287/)
