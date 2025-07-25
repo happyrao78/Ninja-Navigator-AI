@@ -1,75 +1,167 @@
 import streamlit as st
 import requests
 import datetime
-# from utils.save_to_document import save_document
-# from exception.exceptions import TradingBotException
-import sys
+from utils.save_to_document import save_document
 
-BASE_URL = "http://localhost:8000" 
+# Configuration
+BASE_URL = "http://localhost:8000"  # FastAPI backend URL
 
+# Page config
 st.set_page_config(
-    page_title=" Travel Planner Agentic Application",
-    page_icon="",
-    layout="centered",
-    initial_sidebar_state="expanded",
+    page_title="🤖 Ninja Navigator AI - Multi-Agent Travel Planner",
+    page_icon="✈️",
+    layout="wide"
 )
 
-st.title(" Ninja Navigator AI- Your one stop Travel Planner Agentic Application")
+# Header
+st.title("🤖 Ninja Navigator AI")
+st.subheader("🌍 Multi-Agent Travel Planning System")
 
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-
-st.header("How can I help you in planning a trip? Let me know where do you want to visit.")
-
-# Chat input box at bottom
-with st.form(key="query_form", clear_on_submit=True):
-    user_input = st.text_input("User Input", placeholder="e.g. Plan a trip to Goa for 5 days")
-    submit_button = st.form_submit_button("Send")
-
-if submit_button and user_input.strip():
+# Sidebar with agent info
+with st.sidebar:
+    st.header("🤖 Active Agents")
+    
     try:
+        agent_response = requests.get(f"{BASE_URL}/agents/status")
+        if agent_response.status_code == 200:
+            agent_data = agent_response.json()
+            st.success(f"✅ {agent_data['total_agents']} Agents Active")
+            
+            st.write("**Specialized Agents:**")
+            st.write("🔍 Research Agent")
+            st.write("🌤️ Weather Agent") 
+            st.write("💰 Budget Agent")
+            st.write("📅 Itinerary Agent")
+            st.write("🎯 Coordinator Agent")
+        else:
+            st.error(" Agents Offline")
+    except:
+        st.warning(" Connection to agents pending...")
 
-        # Show thinking spinner while backend processes
-        with st.spinner("Ninja is thinking..."):
+# Main interface
+st.write("---")
+
+# Input section
+with st.container():
+    st.header("✈️ Plan Your Perfect Trip")
+    
+    col1, col2 = st.columns([3, 1])
+    
+    with col1:
+        user_input = st.text_area(
+            "🗨️ Describe your dream trip:",
+            placeholder="e.g., Plan a 7-day trip to Tokyo for 2 people with medium budget, interested in culture and food",
+            height=100
+        )
+    
+    with col2:
+        st.write("**💡 Examples:**")
+        st.write("• Plan a trip to Bali for 5 days")
+        st.write("• Visit Paris for a week")
+        st.write("• 3-day adventure in Dubai")
+
+# Submit button
+submit_button = st.button("🚀 Start Multi-Agent Planning", type="primary", use_container_width=True)
+
+# Response section
+if submit_button and user_input.strip():
+    
+    # Show loading with agent status
+    with st.spinner("🤖 Multi-Agent System Working..."):
+        st.info("📊 Research Agent analyzing destination...")
+        st.info("🌤️ Weather Agent checking forecast...")
+        st.info("💰 Budget Agent calculating costs...")
+        st.info("📅 Itinerary Agent creating schedule...")
+        st.info("🎯 Coordinator Agent finalizing plan...")
+        
+        try:
+            # Make API call
             payload = {"question": user_input}
             response = requests.post(f"{BASE_URL}/query", json=payload)
 
-        if response.status_code == 200:
-            answer = response.json().get("answer", "No answer returned.")
-            markdown_content = f"""# 🌍 AI Travel Plan
+            if response.status_code == 200:
+                data = response.json()
+                answer = data.get("answer", "No answer returned.")
+                destination_extracted = data.get("destination_extracted", "Unknown")
+                agents_involved = data.get("agents_involved", {})
+                agent_contributions = data.get("agent_contributions", {})
 
-            # **Generated:** {datetime.datetime.now().strftime('%Y-%m-%d at %H:%M')}  
-            # **Created by:** Happy's Travel Agent
+                
+                st.info(f"📍 Destination Extracted: {destination_extracted}")
+                # Success message
+                st.success("✅ Multi-Agent Planning Completed!")
+                
+                # Show agent contributions
+                with st.expander("🤖 Agent Contributions Summary"):
+                    col1, col2, col3 = st.columns(3)
+                    
+                    with col1:
+                        if "research_agent" in agent_contributions:
+                            st.write("**🔍 Research Agent:**")
+                            st.write("✅ Destination analysis")
+                            st.write("✅ Attractions research")
+                    
+                    with col2:
+                        if "weather_agent" in agent_contributions:
+                            st.write("**🌤️ Weather Agent:**")
+                            st.write("✅ Weather forecast")
+                            st.write("✅ Travel advisory")
+                    
+                    with col3:
+                        if "budget_agent" in agent_contributions:
+                            st.write("**💰 Budget Agent:**")
+                            st.write("✅ Cost estimation")
+                            st.write("✅ Budget breakdown")
+                    
 
-            ---
+                
+                # Display the main response
+                st.write("---")
+                st.header("📋 Your Complete Travel Plan")
+                
+                # Format the response nicely
+                markdown_content = f"""
+{answer}
 
-            {answer}
+---
 
-            ---
+**📊 Generated by Multi-Agent System:**
+- 🔍 Research Agent: Destination analysis & attractions
+- 🌤️ Weather Agent: Weather forecast & advisory  
+- 💰 Budget Agent: Cost estimation & breakdown
+- 📅 Itinerary Agent: Day-by-day planning
+- 🎯 Coordinator Agent: Plan orchestration
 
-            *This travel plan was generated by AI. Please verify all information, especially prices, operating hours, and travel requirements before your trip.*
-            """
-            st.markdown(markdown_content)
+**⏰ Generated:** {datetime.datetime.now().strftime('%Y-%m-%d at %H:%M')}  
+**🤖 Created by:** Ninja Navigator AI Multi-Agent System
 
-            # col1,col2 =st.columns([1,1])
-            # with col1:
-            #     if st.button("Download Itenary"):
-            #         saved_file = save_document(answer)
-            #         if saved_file:
-            #             st.success(f"Travel Plan saved successfully as {saved_file.name}")
-            #     else:
-            #         st.error("Failed to save travel plan. Please try again later.")
-            
-            # with col2:
-            #     st.download_button(
-            #         label="Download Itinerary",
-            #         data=markdown_content.encode('utf-8'),
-            #         file_name=f"travel_plan_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.md",
-            #         mime="text/markdown",
-            #     )
-        else:
-            st.error(" Ninja failed to respond: " + response.text)
+*This travel plan was generated by AI agents. Please verify all information, especially prices, operating hours, and travel requirements before your trip.*
+"""
+                
+                st.markdown(markdown_content)
+                
+                # Action buttons
+                col1, col2 = st.columns([1, 1])
+                
+                with col1:
+                    st.download_button(
+                        label="📥 Download Plan",
+                        data=markdown_content,
+                        file_name=f"travel_plan_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.md",
+                        mime="text/markdown"
+                    )
+                
+                with col2:
+                    if st.button("🔄 Plan Another Trip"):
+                        st.rerun()
 
-    except Exception as e:
-        raise f"The response failed due to {e}"
+            else:
+                st.error(f" Multi-Agent System Error: {response.text}")
+                
+        except Exception as e:
+            st.error(f" Connection Error: {str(e)}")
+            st.info("💡 Make sure the backend server is running: `uvicorn main:app --reload`")
+
+# Footer
+st.write("---")
+st.caption("🤖 Powered by Ninja Navigator AI Multi-Agent System | 🔧 Built with LangChain, FastAPI & Streamlit | 👨‍💻 Created by [Happy Yadav](https://www.yadavhappy.in)")

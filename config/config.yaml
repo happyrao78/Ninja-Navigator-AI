@@ -4,4 +4,4 @@ llm:
     model_name: "o4-mini"
   groq:
     provider: "groq"
-    model_name: "deepseek-r1-distill-llama-70b"
+    model_name: "llama3-8b-8192" # deepseek-llama3-8b has less TPM but this is having better performance and 30k TPM :)
