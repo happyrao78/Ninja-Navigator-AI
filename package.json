@@ -1,0 +1,24 @@
+{
+  "name": "ninja-navigator-ai",
+  "version": "1.0.0",
+  "description": "**Travel planning** is complex, time-consuming, and often inefficient when handled manually or via single-agent systems. Users must juggle information from different domains—destinations, weather, budget, scheduling—leading to fragmented or generic plans.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.2"
+  },
+  "lint-staged": {
+    "*.{py}": [
+      "black",
+      "flake8"
+    ]
+  }
+}
