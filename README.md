@@ -35,16 +35,16 @@ AI **multi-agent systems** allow for **domain-specific expertise**, parallel pro
 
 ### 🔧 Live System Demonstration
 
-## 🎨 User Interface Overview
-![alt text](<Screenshot 2025-07-25 223547.png>)
+## 🎨 User Interface Overviewassets/
+![alt text](assets/Screenshot 2025-07-25 223547.png)
 
 ## 🤖 Multi-Agent Execution in Action
-![alt text](<Screenshot 2025-07-25 223642.png>)
+![alt text](assets/Screenshot 2025-07-25 223642.png)
 
 ## 📄 Generated Travel Plans
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
+![alt text](assets/image.png)
+![alt text](assets/image-1.png)
+![alt text](assets/image-2.png)
 
 ---
 
@@ -91,13 +91,13 @@ These models offer a **balance between speed and intelligence**, ideal for multi
 ## 📊 System Design
 
 ### 🔄 Multi-Agent Workflow
-![alt text](MultiAgent-Workflow.png)
+![alt text](assets/MultiAgent-Workflow.png)
 
 ### 🤖 System Architecture
-![alt text](System-Architecture.png)
+![alt text](assets/System-Architecture.png)
 
 ### 🏗️ Data Flow Sequence
-![alt text](Data-Flow-Sequence.png)
+![alt text](assets/Data-Flow-Sequence.png)
 
 ---
 
