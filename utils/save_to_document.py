@@ -1,7 +1,9 @@
 import os
 import datetime
+import re
 
-def save_document(response_text: str, directory: str = "./output"):
+def save_document(response_text: str,destination:str=None, directory: str = "./output"):
+    """Export travel plan to Markdown file with proper formatting"""
     os.makedirs(directory, exist_ok=True)
     
     
@@ -21,9 +23,16 @@ def save_document(response_text: str, directory: str = "./output"):
     """
             
     try:
-        
+        # Write to markdown file with UTF-8 encoding
+        # Generate timestamp-based filename
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        filename = f"{directory}/AI_Trip_Planner_{timestamp}.md"
+        if destination:
+            # Clean destination name for filename (remove special characters)
+            clean_destination = re.sub(r'[^\w\s-]', '', destination).strip()
+            clean_destination = re.sub(r'[-\s]+', '_', clean_destination)
+            filename = f"{directory}/{clean_destination}_Trip_Plan_{timestamp}.md"
+        else:
+            filename = f"{directory}/AI_Trip_Planner_{timestamp}.md"
 
         print(filename)
 

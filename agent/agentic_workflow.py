@@ -38,6 +38,7 @@ class GraphBuilder():
         return {"messages": [response]}
     
     def build_graph(self):
+        """Builds the state graph for the agent workflow."""
         graph_builder=StateGraph(MessagesState)
         graph_builder.add_node("agent", self.agent_function)
         graph_builder.add_node("tools", ToolNode(tools=self.tools))

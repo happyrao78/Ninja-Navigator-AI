@@ -5,8 +5,10 @@ from utils.save_to_document import save_document
 from starlette.responses import JSONResponse
 import os
 import datetime
+import re
 from dotenv import load_dotenv
 from pydantic import BaseModel
+from utils.save_to_document import save_document
 load_dotenv()
 
 app = FastAPI()
@@ -21,8 +23,29 @@ app.add_middleware(
 class QueryRequest(BaseModel):
     question: str
 
+def extract_destination_from_query(query: str) -> str:
+    """Extract destination from user query"""
+    query_lower = query.lower()
+    
+    # Common patterns to extract destination
+    patterns = [
+        r'trip to (\w+)',
+        r'visit (\w+)',
+        r'travel to (\w+)',
+        r'go to (\w+)',
+        r'plan.*?(\w+)'
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, query_lower)
+        if match:
+            return match.group(1).title()
+    
+    return "Unknown_Destination"
+
 @app.post("/query")
 async def query_travel_agent(query:QueryRequest):
+    """Endpoint to handle queries for the travel agent."""
     try:
         print(query)
         graph = GraphBuilder(model_provider="groq")
@@ -42,9 +65,18 @@ async def query_travel_agent(query:QueryRequest):
         # If result is dict with messages:
         if isinstance(output, dict) and "messages" in output:
             final_output = output["messages"][-1].content  # Last AI response
+            # Save the document
+            destination= extract_destination_from_query(query.question)
+
+            saved_file = save_document(final_output,destination)
+            if saved_file:
+                print(f"Travel Plan saved successfully as {saved_file}")
+            else:
+                print("Failed to save travel plan. Please try again later.")
         else:
             final_output = str(output)
         
         return {"answer": final_output}
+        
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})

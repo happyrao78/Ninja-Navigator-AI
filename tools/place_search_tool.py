@@ -13,8 +13,10 @@ class PlaceSearchTool:
         self.place_search_tool_list = self._setup_tools()
 
     def _setup_tools(self) -> List:
+        """Setup all tools for the place search tool"""
         @tool
         def search_attractions(place:str) -> str:
+            """Search attractions of a place"""
             try:
                 attraction_result = self.google_places_search.google_search_attractions(place)
                 if attraction_result:

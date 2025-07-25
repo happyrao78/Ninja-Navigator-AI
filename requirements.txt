@@ -13,5 +13,6 @@ langchain_tavily
 langchain_groq
 langchain_openai
 langgraph
+langchain-google-community[places]
 
 -e .
