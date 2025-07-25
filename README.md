@@ -1,7 +1,5 @@
 # 🤖 **Ninja Navigator AI** – Multi-Agent Travel Planning System
 
----
-
 ## 🧩 **Problem Statement**
 
 **Travel planning** is complex, time-consuming, and often inefficient when handled manually or via single-agent systems. Users must juggle information from different domains—destinations, weather, budget, scheduling—leading to fragmented or generic plans.
@@ -33,6 +31,13 @@ AI **multi-agent systems** allow for **domain-specific expertise**, parallel pro
 3. **All agents execute concurrently** via `asyncio`
 4. **Results are aggregated** and passed through a synthesis pipeline
 5. **Final travel plan is generated** in structured markdown format, with export options
+
+### Live Snapshots
+![alt text](<Screenshot 2025-07-25 223547.png>)
+![alt text](<Screenshot 2025-07-25 223642.png>)
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
 
 ---
 
