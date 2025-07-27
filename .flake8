@@ -1,3 +1,5 @@
 [flake8]
 max-line-length = 500
-ignore = W293, W291, F541
+ignore = W293, W291, F541, E501, E203, E402, E731, E722, E741, E123, E126, E128, E129, E131
+exclude = .git, __pycache__, build, dist, .tox, .venv, .env, .mypy_cache, .pytest_cache
+select = E, F, W, C90, C901, N802, N803
